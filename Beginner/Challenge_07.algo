@@ -1,0 +1,33 @@
+ALGORITHM Greatest
+VAR
+    X, Y, Z : INTEGER
+BEGIN
+    // Init
+    Write("Give me the three numbers : ");
+    Read(X, Y, Z);
+
+    // Solution 1
+    IF (X > Y) THEN
+        IF (X > Z) THEN
+            Write("X is the Greatest !");
+        ELSE
+            Write("Z is the Greatest !");
+        END_IF
+    ELSE
+        IF (Y > Z) THEN
+            Write("Y is the Greatest !");
+        ELSE
+            Write("Z is the Greatest !");
+        END_IF
+    END_IF
+
+    // Solution 2
+    IF ( (X > Y) AND (X > Z)) THEN
+        Write("X is the Greatest !");
+    ELSE_IF ((Y > X) AND (Y > Z)) THEN
+        Write("Y is the Greatest !");
+    ELSE
+        Write("Z is the Greatest !");
+    END_IF
+
+END

@@ -1,0 +1,33 @@
+ALGORITHM UniqueArray
+VAR
+    tab : ARRAY_OF INTEGER[15]
+    check : BOOLEAN
+    i : INTEGER
+    len : INTEGER
+BEGIN
+    // Filling The Array with Row Data :
+    Write("Enter the Length of the Array :");
+    Read(len);
+    Write("Enter Some Values to fill the Array :");
+    FOR i FROM 1 TO len STEP 1  DO
+        Write("Value ", i, " :");
+        Read(tab[i]);
+    END_FOR
+
+
+    // Traitement
+    check := TRUE;
+    FOR i FROM 1 TO tab.length STEP 1 DO
+        FOR j FROM 1 TO tab.length STEP 1  DO
+            IF (tab[i] = tab[j] AND i <> j) THEN
+                check := FALSE;
+            END_IF
+        END_FOR
+    END_FOR
+
+    IF (check = TRUE) THEN
+        Write("All Values are unique, Array is Clean !");
+    ELSE
+        Write("There is one or multiple equaled Values !");
+    END_IF
+END

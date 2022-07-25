@@ -1,0 +1,37 @@
+ALGORITHM ColdWarm_V2
+VAR
+    Res, X, MinValue, MaxValue, cpt : INTEGER
+BEGIN
+
+    // Initializing Values
+    Res := 45;
+    cpt := 5;
+    MinValue := 0;
+    MaxValue := 100;
+
+    // Launch Repeated Process and Fail after 5 Tries
+    WHILE (cpt > 0) DO
+        Write("Enter a Value : ");
+        Read(X);
+        IF ( (X < MinValue) OR ( X > MaxValue) ) THEN
+            Write("Number Out of Range");
+        ELSE
+            IF ( X = Res) THEN
+                Write("Your are Right, Congratulations !");
+                cpt := 0 ;
+            ELSE
+                IF ( X > Res ) THEN
+                    Write("You're Warm !");
+                ELSE
+                    Write("You're Cold !");
+                END_IF
+            END_IF
+        END_IF
+        cpt := cpt - 1;
+    END_WHILE
+
+    // If Fail, print a message
+    IF (cpt = 0) THEN
+        Write("Try Harder Next Time !");
+    END_IF
+END

@@ -1,0 +1,35 @@
+ALGORITHM MoyennesDiff
+VAR
+    note : INTEGER := 2
+    diff : INTEGER := 1
+    nbrEtudiants : INTEGER := 13
+    i : INTEGER 
+BEGIN
+    // Solution One
+    FOR i FROM nbrEtudiants TO 1 STEP 1  DO
+        Write(" ", i, ", - ", note);
+        note := note + diff; 
+        diff := diff * 3;
+    END_FOR
+
+    // Solution Two
+    Write(" ", nbrEtudiants, ", - ", note);
+    note := note + diff; 
+
+    FOR i FROM nbrEtudiants -1  TO 1 STEP 1  DO
+        Write(" ", i, ", - ", note);
+        diff := diff * 3;
+        note := note + diff; 
+    END_FOR
+
+    // Solution Three
+    i := nbrEtudiants;
+    WHILE (i > 0) DO
+        Write(" ", i, ", - ", note);
+        note := note + diff; 
+        diff := diff * 3;
+
+        i -:= 1;
+    END_WHILE
+
+END
