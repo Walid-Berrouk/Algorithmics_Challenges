@@ -1,0 +1,21 @@
+ALGORITHM WordPrinting
+VAR
+    str : STRING[200]
+    word : STRING[28]
+    i, j : INTEGER
+BEGIN
+    str := "I would say to the House, as I said to those who have joined this Government, I have nothing to offer but blood, toil, tears and sweat.";
+
+    j = 1;
+    FOR i FROM 1 TO str.length STEP 1  DO
+        IF (str[i] <> " ") THEN
+            word[j] := str[i];
+            j := j + 1;
+        ELSE
+            // Closing the word (addind an end delimiter)
+            word[j] := "#";
+            Write(word);
+            j = 1;
+        END_IF
+    END_FOR
+END
