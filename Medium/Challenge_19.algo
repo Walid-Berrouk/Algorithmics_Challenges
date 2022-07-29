@@ -1,0 +1,74 @@
+ALGORITHM SurroundingOnes
+VAR
+    i, j : INTEGER
+    mat : ARRAY_OF INTEGER[50][60];
+BEGIN
+    // Filling The Array
+    Write("Remplissez La matrice");
+    FOR i FROM 1 TO 50 STEP 1  DO
+        FOR j FROM 1 TO 60 STEP 1  DO
+            Read(mat[i][j]);
+            WHILE (mat[i][j] <> 0 OR mat[i][j] <> 1) DO
+                Write("Incorrect Binary Value, Try Again !");
+                Read(mat[i][j]);
+            END_WHILE
+        END_FOR
+    END_FOR
+
+
+    // Traitement
+    FOR i FROM 1 TO 50 STEP 1  DO
+        FOR j FROM 1 TO 60 STEP 1  DO
+            IF (i = 50) THEN
+                IF (j = 60) THEN
+                    IF ((mat[i][j] = 0) AND (mat[i - 1][j] = 1)AND (mat[i][j - 1] = 1)) THEN
+                        mat[i][j] := 1;
+                    END_IF;
+                ELSE_IF (j = 1) THEN
+                    IF ((mat[i][j] = 0) AND (mat[i - 1][j] = 1) AND (mat[i][j + 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                ELSE
+                    IF ((mat[i][j] = 0) AND (mat[i - 1][j] = 1) AND (mat[i][j - 1] = 1) AND (mat[i][j + 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+            ELSE_IF (i = 1)
+                IF (j = 60) THEN
+                    IF ((mat[i][j] = 0) AND (mat[i + 1][j] = 1) AND (mat[i][j - 1] = 1)  ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                ELSE_IF (j = 1) THEN
+                    IF ((mat[i][j] = 0)AND (mat[i + 1][j] = 1) AND (mat[i][j + 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                ELSE
+                    IF ((mat[i][j] = 0) AND (mat[i + 1][j] = 1) AND (mat[i][j - 1] = 1) AND (mat[i][j + 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                END_IF
+            END_IF
+            ELSE
+                IF (j = 60) THEN
+                    IF ((mat[i][j] = 0) AND (mat[i - 1][j] = 1) AND (mat[i + 1][j] = 1) AND (mat[i][j + 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                ELSE_IF (j = 1) THEN
+                    IF ((mat[i][j] = 0) AND (mat[i - 1][j] = 1) AND (mat[i + 1][j] = 1) AND (mat[i][j - 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                ELSE
+                    IF ((mat[i][j] = 0) AND (mat[i - 1][j] = 1) AND (mat[i + 1][j] = 1) AND (mat[i][j - 1] = 1) AND (mat[i][j + 1] = 1) ) THEN
+                        mat[i][j] := 1;
+                    END_IF
+                END_IF
+            END_IF
+        END_FOR
+    END_FOR
+
+    // Writing
+    FOR i FROM 1 TO 50 STEP 1  DO
+        FOR j FROM 1 TO 60 STEP 1  DO
+            Write("Column",i,j ," : ", mat[i][j]);
+        END_FOR
+    END_FOR
+END
