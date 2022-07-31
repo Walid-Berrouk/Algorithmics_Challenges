@@ -1,0 +1,42 @@
+ALGORITHM CountingLetters
+VAR
+    str1 : STRING[150]
+    searched :  STRING[255]
+    i, j, cpt, k, m :INTEGER
+BEGIN
+    // Initialization
+    str1 := "You ask what is our aim? I can answer in one word: Victory. Victory at all costs. Victory in spite of all terror. Victory however long and hard the road may be."
+
+    // iterator searched chars
+    k := 1;
+    // search for each character of the string
+    FOR i FROM 1 TO str1.length STEP 1  DO
+
+        // Verify if not already counted
+        isOk := TRUE;
+        FOR m FROM 1 TO searched.length STEP 1  DO
+            IF (searched[m] = str1[i]) THEN
+                isOK := FALSE;
+            END_IF
+        END_FOR
+
+        // Char not counted
+        IF (isOk = TRUE) THEN
+            searched[k] := str1[i];
+            cpt := 1;
+
+            // Count the occurrence of the char
+            FOR j FROM (i + 1) TO str1.length STEP 1 DO
+                IF (str1[j] = searched[k]) THEN
+                    cpt := cpt + 1;
+                END_IF
+            END_FOR
+
+            Write("The Count of ", searched[k], " is : ", cpt);
+
+            k := k + 1;
+        END_IF
+
+        
+    END_FOR
+END

@@ -1,0 +1,17 @@
+ALGORITHM ExchangeChars
+VAR
+    str1 : STRING[100]
+    i : INTEGER
+BEGIN
+    str1 := "Being a gentleman is not a way of speaking or a way of dressing, it' is simply feeling good about yourself";
+    FOR i FROM 1 TO str1.length STEP 1  DO
+        IF (str1[i] = "a") THEN
+            str1[i] := "b";
+        ELSE
+            IF (str1[i] = "i") THEN
+                str1[i] := "z";
+            END_IF
+        END_IF
+    END_FOR
+    Write(str1);
+END
