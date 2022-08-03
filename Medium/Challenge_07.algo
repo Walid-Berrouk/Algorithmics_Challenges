@@ -1,0 +1,175 @@
+ALGORITHM SetAlgorithms
+VAR
+    arr1 : ARRAY_OF INTEGER[30]
+    arr2 : ARRAY_OF INTEGER[20]
+    i, len : INTEGER
+
+    //procedure pour intersection
+    PROCEDURE intersection(tab1 : ARRAY_OF INTEGER[30], tab1 : ARRAY_OF INTEGER[20])
+    VAR
+        i, j, k, l : INTEGER
+        tab3 : ARRAY_OF INTEGER[20] // On prend la taille la plus petit
+        check : BOOLEAN
+    BEGIN
+        // Comme les tableaux sont en entrée, on suppose qu'il sont lu dans l'Algorithm principale
+
+        // Iterateur du tableau resultat.
+        l := 0;
+
+        FOR i FROM 1 TO tab1.length STEP 1 DO // extraire es valeurs de tab1
+            FOR j FROM 1 TO tab2.length STEP 1 DO //extraire les valeurs de tab2 pour chaque valeur de tab1
+                IF (tab1[i] = tab2[j]) THEN // si valeur de tab1 = valeur de tab2
+                    // Si une valeur existe dans les deux tableaux, on la prend une seul fois (c'est des solution)
+                    
+                    check := TRUE
+
+                    FOR k FROM 1 TO tab3.length STEP 1 DO // Verifier Si la valeur existe deja
+                        IF (tab3[k] = tab1[i]) THEN
+                            check := FALSE;
+                        END_IF
+                    END_FOR
+
+                    IF (check = TRUE) THEN
+                        tab3[l] := tab1[i]; // avec tab1[i] = tab2[j]
+                        l := l + 1;
+                    END_IF
+                END_IF
+            END_FOR
+        END_FOR
+
+        // Affichier le tableau Resultat
+        FOR i FROM 1 TO tab3.length STEP 1  DO
+            Write(tab3[i]);
+        END_FOR
+    END
+
+    //procedure pour difference
+    PROCEDURE difference(tab1 : ARRAY_OF INTEGER[30], tab1 : ARRAY_OF INTEGER[20])
+    VAR
+        i, j, k, l : INTEGER
+        tab3 : ARRAY_OF INTEGER[30] // On prend la taille du premier
+        checkDiff, check : BOOLEAN
+    BEGIN
+        // Comme les tableaux sont en entrée, on suppose qu'il sont lu dans l'Algorithm principale
+
+        // Iterateur du tableau resultat.
+        l := 0;
+
+        FOR i FROM 1 TO tab1.length STEP 1 DO // extraire es valeurs de tab1
+            // Verifier si la valeur existe dans le deuxieme tableau
+
+            checkDiff := FALSE;
+            FOR j FROM 1 TO tab2.length STEP 1 DO //extraire les valeurs de tab2 pour chaque valeur de tab1
+                IF (tab1[i] = tab2[j]) THEN // si valeur de tab1 = valeur de tab2
+                    checkDiff := TRUE;
+                END_IF
+            END_FOR
+
+            IF (checkDiff = FALSE) THEN
+                // Si une valeur existe dans les deux tableaux, on la prend une seul fois (c'est des solution)
+
+                check := TRUE
+
+                FOR k FROM 1 TO tab3.length STEP 1 DO // Verifier Si la valeur existe deja
+                    IF (tab3[k] = tab1[i]) THEN
+                        check := FALSE;
+                    END_IF
+                END_FOR
+
+                IF (check = TRUE) THEN
+                    tab3[l] := tab1[i]; // avec tab1[i] = tab2[j]
+                    l := l + 1;
+                END_IF
+            END_IF
+        END_FOR
+
+        // Affichier le tableau Resultat
+        FOR i FROM 1 TO tab3.length STEP 1  DO
+            Write(tab3[i]);
+        END_FOR
+    END
+
+    //procedure pour union
+    PROCEDURE union(tab1 : ARRAY_OF INTEGER[30], tab1 : ARRAY_OF INTEGER[20])
+    VAR
+        i, j, k, l : INTEGER
+        tab3 : ARRAY_OF INTEGER[50] // On prend la somme des tailles
+        check : BOOLEAN
+    BEGIN
+        // Comme les tableaux sont en entrée, on suppose qu'il sont lu dans l'Algorithm principale
+
+        // Iterateur du tableau resultat.
+        l := 0;
+
+        FOR i FROM 1 TO tab1.length STEP 1 DO // extraire es valeurs de tab1
+            // Si une valeur existe dans le tableau, on la prend une seul fois (c'est des solution)
+            check := TRUE
+
+            FOR k FROM 1 TO tab3.length STEP 1 DO // Verifier Si la valeur existe deja
+                IF (tab3[k] = tab1[i]) THEN
+                    check := FALSE;
+                END_IF
+            END_FOR
+
+            IF (check = TRUE) THEN
+                tab3[l] := tab1[i]; // avec tab1[i] = tab2[j]
+                l := l + 1;
+            END_IF
+        END_FOR
+
+        FOR i FROM 1 TO tab2.length STEP 1 DO // extraire es valeurs de tab1
+            // Si une valeur existe dans le tableau, on la prend une seul fois (c'est des solution)
+            check := TRUE
+
+            FOR k FROM 1 TO tab3.length STEP 1 DO // Verifier Si la valeur existe deja
+                IF (tab3[k] = tab2[i]) THEN
+                    check := FALSE;
+                END_IF
+            END_FOR
+
+            IF (check = TRUE) THEN
+                tab3[l] := tab2[i]; // avec tab1[i] = tab2[j]
+                l := l + 1;
+            END_IF
+        END_FOR
+
+        // Affichier le tableau Resultat
+        FOR i FROM 1 TO tab3.length STEP 1  DO
+            Write(tab3[i]);
+        END_FOR
+    END
+
+
+BEGIN
+    // Filling The Arrays With Values
+    Write("Give me the first array length");
+    Read(len);
+    WHILE (len > 30) DO
+        Write("Give me a Correct Array length !");
+        Read(len);
+    END_WHILE
+
+    FOR i FROM 1 TO len STEP 1  DO
+        Read(arr1[i]);
+    END_FOR
+
+    Write("Give me the second array length");
+    Read(len);
+    WHILE (len > 20) DO
+        Write("Give me a Correct Array length !");
+        Read(len);
+    END_WHILE
+
+    FOR i FROM 1 TO len STEP 1  DO
+        Read(arr2[i]);
+    END_FOR
+
+    // Processing
+    intersection(arr1, arr2);
+
+    union(arr1, arr2);
+
+    difference(arr1, arr2);
+
+    // Note : You can pass a third parameter which is the new array to store the result out, or write it in the main algorithm, it is up to you.
+END
