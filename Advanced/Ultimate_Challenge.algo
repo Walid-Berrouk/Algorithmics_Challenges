@@ -1,0 +1,53 @@
+ALGORITHM Ultimate_Challenge
+VAR
+    choice, sticks_left : INTEGER
+    oponent_choice : BOOLEAN
+BEGIN
+    Write("Welcome to the Sticks game, if you are ready, hit enter...");
+
+    // Intiliaze number of sticks
+    sticks_left := 12;
+    // Initialize turn
+    oponent_choice := FALSE;
+
+    // The condition to always win is to take the first one
+    Write("I start first, i shall take 1 stick");
+    sticks_left := sticks_left - 1;
+    Write("Sticks left after my choice : ", sticks_left);
+    oponent_choice := TRUE;
+
+    WHILE (sticks_left > 0) DO
+        IF (oponent_choice = TRUE) THEN
+            // Oponent turn
+
+            Write("Write number of sticks you want to take : ");
+            Read(choice);
+            WHILE (choice < 1 OR choice > 3) THEN
+                Write("\n");
+                Write("Wrong choice of sticks ! Please choose a number between 1 and 3 !");
+                Read(choice);
+            END_WHILE
+            Write("\n");
+
+            // Substract oponent chosen sticks
+            sticks_left := sticks_left - choice;
+            Write("Sticks left after your choice : ", sticks_left);
+            oponent_choice := FALSE;
+            Write("\n");
+        ELSE
+            // mY TURN
+
+            // Substract my chosen sticks (4 - previous choice in order to win)
+            sticks_left := sticks_left - (4 - choice);
+            Write("Sticks left after my choice : ", sticks_left);
+            oponent_choice := TRUE;
+            Write("\n");
+        END_IF
+    END_WHILE
+
+    IF (oponent_choice = TRUE) THEN
+        Write("Congratulations ! you won !");
+    ELSE
+        Write("You lose ! Try harder next time !");
+    END_IF
+END
